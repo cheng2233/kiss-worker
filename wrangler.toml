@@ -1,6 +1,7 @@
 name = "kiss-worker"
 main = "src/index.js"
-compatibility_date = "2023-07-28"
+compatibility_date = "2026-07-13"
+workers_dev = true
 kv_namespaces = [
     { binding = "KV", id = "7fbf66c84a454567b959fe739d29879b", preview_id = "7fbf66c84a454567b959fe739d29879b" }
 ]

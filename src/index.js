@@ -22,6 +22,13 @@ export default {
       "Access-Control-Max-Age": "86400",
     };
 
+    if (request.method === "GET" && new URL(request.url).pathname === "/") {
+      return Response.json(
+        { service: "kiss-worker", status: "ok" },
+        { headers: corsHeaders }
+      );
+    }
+
     async function handleOptions(request) {
       if (
         request.headers.get("Origin") !== null &&

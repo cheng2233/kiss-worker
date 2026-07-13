@@ -4,7 +4,32 @@
 
 有两种部署方式可供选择：
 
-## `cloudflare workers` 部署方式
+## Cloudflare Workers 部署（推荐）
+
+本仓库已改用 npm，避免 Cloudflare 使用 Yarn 4 安装旧锁文件时出现
+`YN0028: The lockfile would have been modified`。
+
+### 通过 Cloudflare 控制台连接 Git 仓库
+
+1. 在 `wrangler.toml` 中确认 KV 的 `id` 是你创建的命名空间 ID。
+2. Workers & Pages 中导入本 Git 仓库。
+3. 构建命令填写 `npm run build`，部署命令填写 `npm run deploy`。
+4. 在 Worker 的 Settings / Variables and Secrets 中添加加密变量
+   `AUTH_VALUE`，值为 KISS Translator 使用的同步密码。
+5. 部署后访问 Worker 地址，看到 `{"service":"kiss-worker","status":"ok"}`
+   即表示服务已运行。
+
+也可以在本地部署：
+
+```sh
+npm install
+npm run secret
+npm run deploy
+```
+
+> `AUTH_VALUE` 必须设置为 Secret，不要直接写入源码或 `wrangler.toml`。
+
+## 原 Cloudflare Workers 部署说明
 
 ### 前提条件
 
